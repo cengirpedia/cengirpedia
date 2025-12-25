@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" href="https://pure.myadminvip.com/media/logos/favicon.png" />
+    <link rel="shortcut icon" href="https://img.sanishtech.com/u/d3e5eaaf28140ed7a0f8efeca93df75a.jpg" />
     <title>CENGIRPEDIA - Top Up Game & Layanan Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -2564,182 +2564,100 @@
             };
         });
     </script>
+<!-- Tambahkan sebelum </body> -->
+<div id="snowflakes-container"></div>
+
+<style>
+#snowflakes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.snowflake {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    filter: blur(0.5px);
+}
+</style>
+
 <script>
-// Buat canvas untuk efek
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
+// Konfigurasi salju
+const config = {
+    count: 50, // Jumlah keping salju
+    minSize: 2,
+    maxSize: 6,
+    speed: 1,
+    wind: 0.5
+};
 
-// Setup canvas
-canvas.style.position = 'fixed';
-canvas.style.top = '0';
-canvas.style.left = '0';
-canvas.style.width = '100%';
-canvas.style.height = '100%';
-canvas.style.pointerEvents = 'none';
-canvas.style.zIndex = '9999';
-document.body.appendChild(canvas);
-
-// Array untuk menyimpan sparkle
-const sparkles = [];
-const shootingStars = [];
-
-// Kelas Sparkle
-class Sparkle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speed = Math.random() * 0.5 + 0.2;
-        this.opacity = Math.random() * 0.5 + 0.3;
-        this.color = [
-            Math.floor(Math.random() * 55 + 200),
-            Math.floor(Math.random() * 55 + 200),
-            Math.floor(Math.random() * 55 + 200)
-        ];
-        this.angle = 0;
-    }
+// Buat salju
+function createSnowflakes() {
+    const container = document.getElementById('snowflakes-container');
     
-    update() {
-        this.angle += 0.05;
-        this.opacity = 0.5 + Math.sin(this.angle) * 0.3;
-    }
-    
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, ${this.opacity})`;
-        ctx.fill();
+    for (let i = 0; i < config.count; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
         
-        // Glow effect
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`;
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        // Ukuran acak
+        const size = Math.random() * (config.maxSize - config.minSize) + config.minSize;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        
+        // Posisi awal acak
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.top = `${-20}px`;
+        
+        // Animasi
+        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        
+        container.appendChild(snowflake);
+        animateSnowflake(snowflake);
     }
 }
 
-// Kelas Shooting Star
-class ShootingStar {
-    constructor() {
-        this.reset();
-    }
+// Animasi salju
+function animateSnowflake(snowflake) {
+    const startX = parseFloat(snowflake.style.left);
+    const size = parseFloat(snowflake.style.width);
+    const speed = config.speed * (config.maxSize / size);
     
-    reset() {
-        this.x = Math.random() * canvas.width * 0.5;
-        this.y = Math.random() * canvas.height * 0.3;
-        this.speedX = Math.random() * 10 + 5;
-        this.speedY = Math.random() * 3 + 1;
-        this.size = Math.random() * 2 + 1;
-        this.opacity = 1;
-        this.trail = [];
-        this.maxTrail = 10;
-        this.active = true;
-    }
+    let x = startX;
+    let y = -20;
     
-    update() {
-        if (!this.active) return;
+    function move() {
+        y += speed;
+        x += Math.sin(y * 0.01) * config.wind;
         
-        this.x += this.speedX;
-        this.y += this.speedY;
-        
-        // Simpan posisi untuk trail
-        this.trail.push({x: this.x, y: this.y});
-        if (this.trail.length > this.maxTrail) {
-            this.trail.shift();
+        // Jika keluar layar, reset ke atas
+        if (y > window.innerHeight) {
+            y = -20;
+            x = Math.random() * 100;
         }
         
-        // Reset jika keluar layar
-        if (this.x > canvas.width || this.y > canvas.height) {
-            this.reset();
-        }
+        snowflake.style.transform = `translate(${x}px, ${y}px)`;
+        
+        requestAnimationFrame(move);
     }
     
-    draw() {
-        if (!this.active) return;
-        
-        // Gambar trail
-        for (let i = 0; i < this.trail.length; i++) {
-            const point = this.trail[i];
-            const opacity = (i / this.trail.length) * this.opacity;
-            
-            ctx.beginPath();
-            ctx.arc(point.x, point.y, this.size * (i / this.trail.length), 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-            ctx.fill();
-        }
-        
-        // Gambar bintang utama
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        ctx.fill();
-    }
+    move();
 }
 
-// Inisialisasi
-function init() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    // Buat sparkle
-    for (let i = 0; i < 50; i++) {
-        sparkles.push(new Sparkle());
-    }
-    
-    // Buat shooting star
-    for (let i = 0; i < 3; i++) {
-        shootingStars.push(new ShootingStar());
-    }
-    
-    animate();
-}
-
-// Animasi
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Update dan draw sparkle
-    sparkles.forEach(sparkle => {
-        sparkle.update();
-        sparkle.draw();
-    });
-    
-    // Update dan draw shooting star
-    shootingStars.forEach(star => {
-        star.update();
-        star.draw();
-    });
-    
-    requestAnimationFrame(animate);
-}
-
-// Event listeners
-window.addEventListener('load', init);
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// Mouse interaction (opsional)
-document.addEventListener('mousemove', (e) => {
-    // Tambah sparkle di posisi mouse
-    if (Math.random() > 0.7) {
-        const sparkle = new Sparkle();
-        sparkle.x = e.clientX;
-        sparkle.y = e.clientY;
-        sparkle.size = Math.random() * 4 + 2;
-        sparkles.push(sparkle);
-        
-        // Hapus sparkle lama jika terlalu banyak
-        if (sparkles.length > 100) {
-            sparkles.shift();
-        }
-    }
-});
+// Mulai saat halaman dimuat
+window.addEventListener('load', createSnowflakes);
+</script>
 </script>
 </body>
 
 </html>
+
 
 
 
