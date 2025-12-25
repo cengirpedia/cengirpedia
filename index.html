@@ -2564,11 +2564,9 @@
             };
         });
     </script>
-    <!-- Tambahkan sebelum </body> -->
-<div id="snowflakes-container"></div>
-
-<style>
-#snowflakes-container {
+    <style>
+/* Container untuk efek sparkle */
+#sparkle-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -2576,86 +2574,65 @@
     height: 100%;
     pointer-events: none;
     z-index: 9999;
+    overflow: hidden;
 }
 
-.snowflake {
+/* Kelas untuk sparkle individual */
+.sparkle {
     position: absolute;
-    background-color: white;
+    background: #fff;
     border-radius: 50%;
     pointer-events: none;
-    opacity: 0.8;
+    z-index: 9999;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+    animation: twinkle 1.5s infinite alternate;
+}
+
+/* Efek bintang jatuh (shooting star) */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
     filter: blur(0.5px);
 }
+
+/* Animasi */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(-100px) translateY(-100px) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg);
+        opacity: 0;
+    }
+}
 </style>
-
-<script>
-// Konfigurasi salju
-const config = {
-    count: 50, // Jumlah keping salju
-    minSize: 2,
-    maxSize: 6,
-    speed: 1,
-    wind: 0.5
-};
-
-// Buat salju
-function createSnowflakes() {
-    const container = document.getElementById('snowflakes-container');
-    
-    for (let i = 0; i < config.count; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.className = 'snowflake';
-        
-        // Ukuran acak
-        const size = Math.random() * (config.maxSize - config.minSize) + config.minSize;
-        snowflake.style.width = `${size}px`;
-        snowflake.style.height = `${size}px`;
-        
-        // Posisi awal acak
-        snowflake.style.left = `${Math.random() * 100}vw`;
-        snowflake.style.top = `${-20}px`;
-        
-        // Animasi
-        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-        
-        container.appendChild(snowflake);
-        animateSnowflake(snowflake);
-    }
-}
-
-// Animasi salju
-function animateSnowflake(snowflake) {
-    const startX = parseFloat(snowflake.style.left);
-    const size = parseFloat(snowflake.style.width);
-    const speed = config.speed * (config.maxSize / size);
-    
-    let x = startX;
-    let y = -20;
-    
-    function move() {
-        y += speed;
-        x += Math.sin(y * 0.01) * config.wind;
-        
-        // Jika keluar layar, reset ke atas
-        if (y > window.innerHeight) {
-            y = -20;
-            x = Math.random() * 100;
-        }
-        
-        snowflake.style.transform = `translate(${x}px, ${y}px)`;
-        
-        requestAnimationFrame(move);
-    }
-    
-    move();
-}
-
-// Mulai saat halaman dimuat
-window.addEventListener('load', createSnowflakes);
-</script>
 </body>
 
 </html>
+
 
 
 
