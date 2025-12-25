@@ -2564,74 +2564,183 @@
             };
         });
     </script>
-    <style>
-/* Container untuk efek sparkle */
-#sparkle-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    overflow: hidden;
-}
+<script>
+// Buat canvas untuk efek
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
 
-/* Kelas untuk sparkle individual */
-.sparkle {
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-    animation: twinkle 1.5s infinite alternate;
-}
+// Setup canvas
+canvas.style.position = 'fixed';
+canvas.style.top = '0';
+canvas.style.left = '0';
+canvas.style.width = '100%';
+canvas.style.height = '100%';
+canvas.style.pointerEvents = 'none';
+canvas.style.zIndex = '9999';
+document.body.appendChild(canvas);
 
-/* Efek bintang jatuh (shooting star) */
-.shooting-star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0.8),
-        transparent
-    );
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    filter: blur(0.5px);
-}
+// Array untuk menyimpan sparkle
+const sparkles = [];
+const shootingStars = [];
 
-/* Animasi */
-@keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes shoot {
-    0% {
-        transform: translateX(-100px) translateY(-100px) rotate(45deg);
-        opacity: 0;
+// Kelas Sparkle
+class Sparkle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speed = Math.random() * 0.5 + 0.2;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.color = [
+            Math.floor(Math.random() * 55 + 200),
+            Math.floor(Math.random() * 55 + 200),
+            Math.floor(Math.random() * 55 + 200)
+        ];
+        this.angle = 0;
     }
-    10% {
-        opacity: 1;
+    
+    update() {
+        this.angle += 0.05;
+        this.opacity = 0.5 + Math.sin(this.angle) * 0.3;
     }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg);
-        opacity: 0;
+    
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, ${this.opacity})`;
+        ctx.fill();
+        
+        // Glow effect
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
     }
 }
-</style>
+
+// Kelas Shooting Star
+class ShootingStar {
+    constructor() {
+        this.reset();
+    }
+    
+    reset() {
+        this.x = Math.random() * canvas.width * 0.5;
+        this.y = Math.random() * canvas.height * 0.3;
+        this.speedX = Math.random() * 10 + 5;
+        this.speedY = Math.random() * 3 + 1;
+        this.size = Math.random() * 2 + 1;
+        this.opacity = 1;
+        this.trail = [];
+        this.maxTrail = 10;
+        this.active = true;
+    }
+    
+    update() {
+        if (!this.active) return;
+        
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        // Simpan posisi untuk trail
+        this.trail.push({x: this.x, y: this.y});
+        if (this.trail.length > this.maxTrail) {
+            this.trail.shift();
+        }
+        
+        // Reset jika keluar layar
+        if (this.x > canvas.width || this.y > canvas.height) {
+            this.reset();
+        }
+    }
+    
+    draw() {
+        if (!this.active) return;
+        
+        // Gambar trail
+        for (let i = 0; i < this.trail.length; i++) {
+            const point = this.trail[i];
+            const opacity = (i / this.trail.length) * this.opacity;
+            
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, this.size * (i / this.trail.length), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.fill();
+        }
+        
+        // Gambar bintang utama
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.fill();
+    }
+}
+
+// Inisialisasi
+function init() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Buat sparkle
+    for (let i = 0; i < 50; i++) {
+        sparkles.push(new Sparkle());
+    }
+    
+    // Buat shooting star
+    for (let i = 0; i < 3; i++) {
+        shootingStars.push(new ShootingStar());
+    }
+    
+    animate();
+}
+
+// Animasi
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update dan draw sparkle
+    sparkles.forEach(sparkle => {
+        sparkle.update();
+        sparkle.draw();
+    });
+    
+    // Update dan draw shooting star
+    shootingStars.forEach(star => {
+        star.update();
+        star.draw();
+    });
+    
+    requestAnimationFrame(animate);
+}
+
+// Event listeners
+window.addEventListener('load', init);
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// Mouse interaction (opsional)
+document.addEventListener('mousemove', (e) => {
+    // Tambah sparkle di posisi mouse
+    if (Math.random() > 0.7) {
+        const sparkle = new Sparkle();
+        sparkle.x = e.clientX;
+        sparkle.y = e.clientY;
+        sparkle.size = Math.random() * 4 + 2;
+        sparkles.push(sparkle);
+        
+        // Hapus sparkle lama jika terlalu banyak
+        if (sparkles.length > 100) {
+            sparkles.shift();
+        }
+    }
+});
+</script>
 </body>
 
 </html>
+
 
 
 
