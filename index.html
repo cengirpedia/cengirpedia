@@ -172,6 +172,64 @@
             border-radius: 0 0 30px 30px;
         }
 
+        .banner-slider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 214, 102, 0.2) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Efek Bintang Jatuh */
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: fallingStar linear forwards;
+        }
+
+        @keyframes fallingStar {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(0) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(400px) translateX(100px) rotate(360deg);
+            }
+        }
+
+        /* Sparkle efek tambahan untuk bintang */
+        .spark {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: sparkle 0.5s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         .slide {
             position: absolute;
             top: 0;
@@ -614,6 +672,10 @@
             display: none;
             border-left: 5px solid var(--accent);
             animation: fadeIn 0.5s ease;
+        }
+
+        .service-summary.show {
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -1150,6 +1212,48 @@
             transform: scale(1.1);
         }
 
+        /* Confetti animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-gradient);
+            top: -10px;
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        /* Floating animations */
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: sparkle 1.5s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         /* Responsive for Tablets */
         @media (min-width: 768px) {
             body {
@@ -1370,48 +1474,6 @@
         .modal-body, .games-slider, .mobile-nav {
             -webkit-overflow-scrolling: touch;
         }
-
-        /* Confetti animation */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--bg-gradient);
-            top: -10px;
-            border-radius: 50%;
-            z-index: 10000;
-            pointer-events: none;
-        }
-
-        /* Floating animations */
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100vh) rotate(360deg);
-            }
-        }
-
-        /* Sparkle effect */
-        .sparkle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-            animation: sparkle 1.5s infinite alternate;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.3; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
     </style>
 </head>
 <body>
@@ -1557,15 +1619,15 @@
                 </div>
             </div>
             
-            <!-- Rekber Card -->
-            <div class="service-card" onclick="window.open('https://facebook.com', '_blank')">
+            <!-- Panduan Top Up Card -->
+            <div class="service-card" onclick="window.open('https://cengirpedia.github.io/panduan-top-up-/', '_blank')">
                 <div class="service-icon">
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-book-open"></i>
                 </div>
-                <h3>🛡️ REKBER AMAN</h3>
-                <p>Transaksi lebih aman dengan sistem Rekening Bersama. Admin sebagai perantara transaksi.</p>
+                <h3>📖 PANDUAN TOP UP</h3>
+                <p>Panduan lengkap cara top up game dan layanan digital dengan mudah dan aman.</p>
                 <div style="margin-top: auto;">
-                    <button class="btn">REKBER SEKARANG</button>
+                    <button class="btn">BACA PANDUAN</button>
                 </div>
             </div>
         </div>
@@ -1765,7 +1827,7 @@
                     <li><a href="#services">Pulsa & Data</a></li>
                     <li><a href="#services">E-Wallet</a></li>
                     <li><a href="#services">Pembayaran Tagihan</a></li>
-                    <li><a href="https://facebook.com" target="_blank">Rekber Aman</a></li>
+                    <li><a href="https://cengirpedia.github.io/panduan-top-up-/" target="_blank">Panduan Top Up</a></li>
                 </ul>
             </div>
             
@@ -2321,6 +2383,92 @@
         const articleModal = document.getElementById('articleModal');
         const helpModal = document.getElementById('helpModal');
 
+        // Fungsi untuk membuat bintang jatuh di banner
+        function createFallingStars() {
+            const banner = document.querySelector('.banner-slider');
+            if (!banner) return;
+            
+            // Buat 5-10 bintang
+            const starCount = Math.floor(Math.random() * 6) + 5;
+            
+            for (let i = 0; i < starCount; i++) {
+                setTimeout(() => {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    
+                    // Ukuran random
+                    const size = Math.random() * 3 + 1;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    
+                    // Posisi random di atas banner
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `-20px`;
+                    
+                    // Warna random (putih, kuning, biru muda)
+                    const colors = ['#FFFFFF', '#FFD166', '#4ECDC4', '#FF9E6D'];
+                    star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Durasi animasi random
+                    const duration = Math.random() * 2 + 2;
+                    star.style.animationDuration = `${duration}s`;
+                    
+                    // Tambahkan ke banner
+                    banner.appendChild(star);
+                    
+                    // Hapus setelah animasi selesai
+                    setTimeout(() => {
+                        if (star.parentNode) {
+                            star.parentNode.removeChild(star);
+                        }
+                    }, duration * 1000);
+                    
+                    // Tambahkan efek sparkle kecil
+                    createStarSparkle(star);
+                    
+                }, i * 300); // Stagger animation
+            }
+        }
+
+        // Fungsi untuk membuat efek sparkle pada bintang
+        function createStarSparkle(star) {
+            setTimeout(() => {
+                if (!star.parentNode) return;
+                
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                
+                // Posisi di sekitar bintang
+                const rect = star.getBoundingClientRect();
+                const bannerRect = document.querySelector('.banner-slider').getBoundingClientRect();
+                
+                const x = rect.left - bannerRect.left + rect.width / 2;
+                const y = rect.top - bannerRect.top + rect.height / 2;
+                
+                spark.style.left = `${x}px`;
+                spark.style.top = `${y}px`;
+                
+                document.querySelector('.banner-slider').appendChild(spark);
+                
+                // Hapus setelah animasi
+                setTimeout(() => {
+                    if (spark.parentNode) {
+                        spark.parentNode.removeChild(spark);
+                    }
+                }, 500);
+                
+            }, Math.random() * 1000);
+        }
+
+        // Jalankan efek bintang jatuh secara berkala
+        function startStarAnimation() {
+            createFallingStars();
+            
+            // Jalankan setiap 3-5 detik
+            const nextRun = Math.random() * 2000 + 3000;
+            setTimeout(startStarAnimation, nextRun);
+        }
+
         // Initialize mobile navigation
         function initMobileNav() {
             const navItems = [
@@ -2752,6 +2900,12 @@
             slides[index].classList.add('active');
             indicators[index].classList.add('active');
             currentSlide = index;
+            
+            // Tambahkan efek bintang saat slide berubah
+            createConfetti();
+            setTimeout(() => {
+                createFallingStars();
+            }, 500);
         }
         
         function nextSlide() {
@@ -2768,6 +2922,11 @@
             initGamesGrid();
             initArticles();
             createRandomSparkles();
+            
+            // Mulai animasi bintang jatuh
+            setTimeout(() => {
+                startStarAnimation();
+            }, 1000);
             
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', () => {
@@ -2985,14 +3144,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
