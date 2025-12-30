@@ -34,7 +34,7 @@
         
         html {
             height: 100%;
-            overflow-y: scroll;
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
         
@@ -61,7 +61,7 @@
             min-height: 100vh;
         }
         
-        /* Soft Light Particles Animation Background - REPLACED */
+        /* Soft Light Particles Animation Background */
         .particles-bg {
             position: fixed;
             top: 0;
@@ -254,7 +254,7 @@
             box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
         }
         
-        /* Header & Banner - UPDATED LOGO COLOR TO WHITE */
+        /* Header & Banner */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -274,7 +274,7 @@
         }
         
         .logo {
-            color: white; /* CHANGED TO WHITE */
+            color: white;
             font-size: 28px;
             font-weight: 900;
             margin-right: 12px;
@@ -361,10 +361,10 @@
             border-radius: 2px;
         }
         
-        /* Product Grid */
+        /* Product Grid - 2 COLUMNS LIKE IPHONE */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
             gap: 15px;
             margin-bottom: 30px;
             position: relative;
@@ -381,6 +381,9 @@
             border: 3px solid transparent;
             position: relative;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .product-card:hover {
@@ -390,12 +393,13 @@
         }
         
         .product-img {
-            height: 80px;
+            height: 120px; /* Increased height for better image display */
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            flex-shrink: 0;
         }
         
         .product-img img {
@@ -411,6 +415,10 @@
         .product-info {
             padding: 15px;
             text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .product-title {
@@ -418,18 +426,21 @@
             font-weight: 700;
             margin-bottom: 5px;
             color: var(--dark);
+            line-height: 1.3;
         }
         
         .product-subtitle {
             font-size: 12px;
             color: var(--primary);
             margin-bottom: 10px;
+            line-height: 1.2;
         }
         
         .product-price {
             font-size: 14px;
             font-weight: 600;
             color: var(--primary);
+            margin-top: auto;
         }
         
         /* Price List Modal */
@@ -778,7 +789,7 @@
             }
             
             .product-img {
-                height: 120px;
+                height: 100px;
             }
         }
         
@@ -792,6 +803,10 @@
                 min-height: 100vh;
                 background: rgba(255, 255, 255, 0.05);
                 border-radius: 0;
+            }
+            
+            .products-grid {
+                gap: 18px;
             }
         }
         
@@ -834,11 +849,48 @@
                 overflow-y: auto !important;
                 -webkit-overflow-scrolling: touch !important;
             }
+            
+            /* Ensure 2 cards layout on Android */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        
+        /* Specific fix for very small screens */
+        @media (max-width: 320px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .product-img {
+                height: 90px;
+            }
+            
+            .product-title {
+                font-size: 14px;
+            }
+            
+            .product-price {
+                font-size: 13px;
+            }
+        }
+        
+        /* Fix for landscape orientation */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            
+            .product-img {
+                height: 80px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Soft Light Particles Background Animation - UPDATED -->
+    <!-- Soft Light Particles Background Animation -->
     <div class="particles-bg" id="particlesBg"></div>
     
     <!-- Mobile Container -->
@@ -919,10 +971,10 @@
             </div>
         </div>
         
-        <!-- Header & Banner - LOGO COLOR CHANGED TO WHITE -->
+        <!-- Header & Banner -->
         <header>
             <div class="banner">
-                <div class="logo">🎮</div> <!-- Logo game di banner sekarang berwarna putih -->
+                <div class="logo">🎮</div>
                 <div>
                     <h1 class="site-title">CENGIR PEDIA</h1>
                     <p class="site-tagline">Top Up & Layanan Digital Terlengkap</p>
@@ -950,9 +1002,7 @@
                     <!-- Mobile Legends -->
                     <div class="product-card" data-product="ml" data-title="Mobile Legends" data-subtitle="Diamond Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #f05a28 0%, #ff8c5a 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/ml.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/ml.jpg" alt="Mobile Legends" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/f05a28/ffffff?text=ML'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Mobile Legends</h3>
@@ -964,9 +1014,7 @@
                     <!-- Free Fire -->
                     <div class="product-card" data-product="ff" data-title="Free Fire" data-subtitle="Diamond Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #ff6b00 0%, #ff9e5a 100%);">
-                            <div class="product-icon" style="color: white;">
-                               <img src="images/ff.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/ff.jpg" alt="Free Fire" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/ff6b00/ffffff?text=FF'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Free Fire</h3>
@@ -978,9 +1026,7 @@
                     <!-- PUBG Mobile -->
                     <div class="product-card" data-product="pubg" data-title="PUBG Mobile" data-subtitle="UC Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #ff9900 0%, #ffcc5a 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/pubg.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/pubg.jpg" alt="PUBG Mobile" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/ff9900/ffffff?text=PUBG'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">PUBG Mobile</h3>
@@ -992,9 +1038,7 @@
                     <!-- Valorant -->
                     <div class="product-card" data-product="valorant" data-title="Valorant" data-subtitle="VP Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #ff4655 0%, #ff7a85 100%);">
-                            <div class="product-icon" style="color: white;">
-                               <img src="images/vl.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/vl.jpg" alt="Valorant" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/ff4655/ffffff?text=VALO'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Valorant</h3>
@@ -1006,9 +1050,7 @@
                     <!-- Genshin Impact -->
                     <div class="product-card" data-product="genshin" data-title="Genshin Impact" data-subtitle="Genesis Crystal">
                         <div class="product-img" style="background: linear-gradient(135deg, #1e9bff 0%, #6bc1ff 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/gi.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/gi.jpg" alt="Genshin Impact" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/1e9bff/ffffff?text=GI'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Genshin Impact</h3>
@@ -1020,9 +1062,7 @@
                     <!-- Call of Duty Mobile -->
                     <div class="product-card" data-product="codm" data-title="Call of Duty Mobile" data-subtitle="CP Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #000000 0%, #333333 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/cod.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/cod.jpg" alt="COD Mobile" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/000000/ffffff?text=COD'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">COD Mobile</h3>
@@ -1034,9 +1074,7 @@
                     <!-- League of Legends: Wild Rift -->
                     <div class="product-card" data-product="wildrift" data-title="LoL: Wild Rift" data-subtitle="WC Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #00509e 0%, #1e88e5 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/wr.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/wr.jpg" alt="Wild Rift" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/00509e/ffffff?text=WR'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Wild Rift</h3>
@@ -1048,9 +1086,7 @@
                     <!-- Arena of Valor -->
                     <div class="product-card" data-product="aov" data-title="Arena of Valor" data-subtitle="Voucher Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #8e24aa 0%, #ba68c8 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/aov.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/aov.jpg" alt="Arena of Valor" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/8e24aa/ffffff?text=AOV'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Arena of Valor</h3>
@@ -1062,9 +1098,7 @@
                     <!-- Roblox -->
                     <div class="product-card" data-product="roblox" data-title="Roblox" data-subtitle="Robux Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #ff3c3c 0%, #ff8a8a 100%);">
-                            <div class="product-icon" style="color: white;">
-                               <img src="images/rb.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/rb.jpg" alt="Roblox" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/ff3c3c/ffffff?text=ROBLOX'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Roblox</h3>
@@ -1076,9 +1110,7 @@
                     <!-- Clash of Clans -->
                     <div class="product-card" data-product="coc" data-title="Clash of Clans" data-subtitle="Gems Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #ff9800 0%, #ffcc80 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/coc.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/coc.jpg" alt="Clash of Clans" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/ff9800/ffffff?text=COC'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Clash of Clans</h3>
@@ -1090,9 +1122,7 @@
                     <!-- Clash Royale -->
                     <div class="product-card" data-product="cr" data-title="Clash Royale" data-subtitle="Gems Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #f44336 0%, #ef9a9a 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/cr.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/cr.jpg" alt="Clash Royale" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/f44336/ffffff?text=CR'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Clash Royale</h3>
@@ -1104,9 +1134,7 @@
                     <!-- Minecraft -->
                     <div class="product-card" data-product="minecraft" data-title="Minecraft" data-subtitle="Minecoin Top Up">
                         <div class="product-img" style="background: linear-gradient(135deg, #4caf50 0%, #a5d6a7 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <img src="images/mc.jpg" alt="Mobile Legend" width="257" height="180">
-                            </div>
+                            <img src="images/mc.jpg" alt="Minecraft" onerror="this.onerror=null; this.src='https://via.placeholder.com/257x180/4caf50/ffffff?text=MC'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Minecraft</h3>
@@ -1583,7 +1611,7 @@
     </a>
     
     <script>
-        // Create soft light particles animation background - UPDATED
+        // Create soft light particles animation background
         function createParticlesBackground() {
             const particlesBg = document.getElementById('particlesBg');
             const particleCount = 25;
@@ -1947,7 +1975,7 @@
         const closePriceListBtn = document.getElementById('closePriceList');
         
         document.addEventListener('DOMContentLoaded', function() {
-            // Create soft light particles background - UPDATED
+            // Create soft light particles background
             createParticlesBackground();
             
             // Detect if on mobile
@@ -2160,6 +2188,12 @@
                 document.addEventListener('touchmove', function(e) {
                     // Allow default scroll behavior
                 }, { passive: true });
+                
+                // Force 2-column layout on Android
+                const productsGrids = document.querySelectorAll('.products-grid');
+                productsGrids.forEach(grid => {
+                    grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                });
             }
         });
         
