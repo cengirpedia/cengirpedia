@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" href="https://www.shutterstock.com/shutterstock/photos/1828555649/display_1500/stock-vector-initial-letter-logo-cp-pc-template-logo-design-vector-1828555649.jpg" />
     <title>Cengir Pedia - Top Up & Layanan Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,6 +32,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        html {
+            height: 100%;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+        
         body {
             background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
             color: #333;
@@ -39,19 +45,10 @@
             min-height: 100vh;
             padding-bottom: 80px;
             -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
             position: relative;
-        }
-        
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        body::-webkit-scrollbar {
-            display: none;
-        }
-        
-        /* Hide scrollbar for IE, Edge and Firefox */
-        body {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .container {
@@ -61,6 +58,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            min-height: 100vh;
         }
         
         /* Soft Light Particles Animation Background - REPLACED */
@@ -338,6 +336,7 @@
             padding: 20px 0;
             position: relative;
             z-index: 2;
+            min-height: 50vh;
         }
         
         .section-title {
@@ -486,6 +485,7 @@
         .price-list-body {
             flex: 1;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             padding: 20px;
         }
         
@@ -825,6 +825,16 @@
         .nav-link:active {
             transform: scale(0.98);
         }
+        
+        /* Fix untuk Android Scroll */
+        @media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 1024px) {
+            html, body {
+                height: auto !important;
+                min-height: 100% !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -927,8 +937,6 @@
             <a href="#pulsa" class="nav-link" data-section="pulsa">📱 Pulsa</a>
             <a href="#data" class="nav-link" data-section="data">📶 Paket Data</a>
             <a href="#token" class="nav-link" data-section="token">⚡ Token Listrik</a>
-            <a href="#voucher" class="nav-link" data-section="voucher">🎫 Voucher</a>
-            <a href="#streaming" class="nav-link" data-section="streaming">🎬 Streaming</a>
             <a href="#guide" class="nav-link" data-section="guide">📚 Panduan</a>
         </div>
         
@@ -1473,188 +1481,6 @@
                 </div>
             </section>
             
-            <!-- Voucher Section -->
-            <section id="voucher" class="content-section">
-                <h2 class="section-title">🎫 Voucher & Lainnya</h2>
-                
-                <div class="products-grid">
-                    <!-- Google Play -->
-                    <div class="product-card" data-product="google_play" data-title="Google Play" data-subtitle="Voucher Code">
-                        <div class="product-img" style="background: linear-gradient(135deg, #3dcc5f 0%, #8ce6a3 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fab fa-google-play"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Google Play</h3>
-                            <p class="product-subtitle">Voucher Code</p>
-                            <p class="product-price">Mulai dari Rp 10.500</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Netflix -->
-                    <div class="product-card" data-product="netflix" data-title="Netflix" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #e50914 0%, #ff6666 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-tv"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Netflix</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 120.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Spotify -->
-                    <div class="product-card" data-product="spotify" data-title="Spotify Premium" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #1DB954 0%, #7de8a8 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fab fa-spotify"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Spotify Premium</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 55.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- YouTube Premium -->
-                    <div class="product-card" data-product="youtube" data-title="YouTube Premium" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #ff0000 0%, #ff9999 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fab fa-youtube"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">YouTube Premium</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 79.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Apple Store -->
-                    <div class="product-card" data-product="apple" data-title="Apple Store" data-subtitle="Voucher Code">
-                        <div class="product-img" style="background: linear-gradient(135deg, #000000 0%, #666666 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fab fa-apple"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Apple Store</h3>
-                            <p class="product-subtitle">Voucher Code</p>
-                            <p class="product-price">Mulai dari Rp 10.800</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Voucher Game Lain -->
-                    <div class="product-card" data-product="other_games" data-title="Voucher Game Lain" data-subtitle="Berbagai Game">
-                        <div class="product-img" style="background: linear-gradient(135deg, #8a2be2 0%, #c299ff 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-gamepad"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Voucher Game Lain</h3>
-                            <p class="product-subtitle">Berbagai Game</p>
-                            <p class="product-price">Mulai dari Rp 5.000</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Streaming Section -->
-            <section id="streaming" class="content-section">
-                <h2 class="section-title">🎬 Layanan Streaming</h2>
-                
-                <div class="products-grid">
-                    <!-- Disney+ Hotstar -->
-                    <div class="product-card" data-product="disney" data-title="Disney+ Hotstar" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #113ccf 0%, #6699ff 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-film"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Disney+ Hotstar</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 45.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Viu -->
-                    <div class="product-card" data-product="viu" data-title="Viu Premium" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #00d1b2 0%, #66ffe6 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-video"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Viu Premium</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 39.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- HBO Go -->
-                    <div class="product-card" data-product="hbo" data-title="HBO Go" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #000000 0%, #666666 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">HBO Go</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 99.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Amazon Prime -->
-                    <div class="product-card" data-product="amazon" data-title="Amazon Prime" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #00a8e1 0%, #66d9ff 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fab fa-amazon"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Amazon Prime</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 59.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Catchplay -->
-                    <div class="product-card" data-product="catchplay" data-title="Catchplay" data-subtitle="Subscription">
-                        <div class="product-img" style="background: linear-gradient(135deg, #f15a24 0%, #ff9966 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Catchplay</h3>
-                            <p class="product-subtitle">Subscription</p>
-                            <p class="product-price">Mulai dari Rp 89.000</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Streaming Lainnya -->
-                    <div class="product-card" data-product="other_streaming" data-title="Streaming Lainnya" data-subtitle="Berbagai Platform">
-                        <div class="product-img" style="background: linear-gradient(135deg, #8a2be2 0%, #c299ff 100%);">
-                            <div class="product-icon" style="color: white;">
-                                <i class="fas fa-tv"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Streaming Lainnya</h3>
-                            <p class="product-subtitle">Berbagai Platform</p>
-                            <p class="product-price">Mulai dari Rp 30.000</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
             <!-- Panduan Section -->
             <section id="guide" class="content-section">
                 <h2 class="section-title">📚 Panduan Top Up Bot WhatsApp</h2>
@@ -1667,7 +1493,7 @@
                             <div class="step-number">1</div>
                             <div class="step-text">
                                 <h4>Pilih Produk</h4>
-                                <p>Klik produk yang ingin dibeli dari kategori Game, E-Wallet, Pulsa, Data, Token Listrik, Voucher, atau Streaming.</p>
+                                <p>Klik produk yang ingin dibeli dari kategori Game, E-Wallet, Pulsa, Data, Token Listrik, atau Panduan.</p>
                             </div>
                         </div>
                         
@@ -1691,7 +1517,7 @@
                             <div class="step-number">4</div>
                             <div class="step-text">
                                 <h4>Konfirmasi Order</h4>
-                                <p>Kirim pesan "GET [PRODUK]" lalu pilih produk yang ingin di beli, masing masing produk memiliki  kode unik CONTOH ORDER DIAMOND MOBILE LEGEND : BUY KODE ID ( BUY CH76aB 12345678 1234 ) .</p>
+                                <p>Kirim pesan "GET [PRODUK]" lalu pilih produk yang ingin di beli, masing masing produk memiliki kode unik CONTOH ORDER DIAMOND MOBILE LEGEND : BUY KODE ID ( BUY CH76aB 12345678 1234 ).</p>
                             </div>
                         </div>
                         
@@ -1760,37 +1586,28 @@
         // Create soft light particles animation background - UPDATED
         function createParticlesBackground() {
             const particlesBg = document.getElementById('particlesBg');
-            const particleCount = 25; // Fewer particles for cleaner look
+            const particleCount = 25;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Random position
                 const left = Math.random() * 100;
                 particle.style.left = left + '%';
                 
-                // Random size - smaller and more varied
                 const size = Math.random() * 8 + 4;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                // Random animation duration - much slower
-                const duration = Math.random() * 30 + 30; // 30-60 seconds
+                const duration = Math.random() * 30 + 30;
                 particle.style.animationDuration = duration + 's';
                 
-                // Random animation delay
                 const delay = Math.random() * 20;
                 particle.style.animationDelay = delay + 's';
                 
-                // Random opacity - softer
                 const opacity = Math.random() * 0.5 + 0.3;
                 particle.style.opacity = opacity;
                 
-                // Add slight blur and glow
-                particle.style.filter = `blur(${Math.random() * 2 + 0.5}px)`;
-                
-                // Random starting position (some start off screen)
                 const startOffset = Math.random() * 100 - 20;
                 particle.style.transform = `translateY(${startOffset}vh)`;
                 
@@ -1847,14 +1664,6 @@
                 { name: '2240 GC', price: 'Rp 499.000' },
                 { name: '3880 GC', price: 'Rp 799.000' },
                 { name: '8080 GC', price: 'Rp 1.599.000' }
-            ],
-            'steam': [
-                { name: '5.000 IDR', price: 'Rp 5.500' },
-                { name: '10.000 IDR', price: 'Rp 11.000' },
-                { name: '20.000 IDR', price: 'Rp 21.500' },
-                { name: '50.000 IDR', price: 'Rp 52.000' },
-                { name: '100.000 IDR', price: 'Rp 103.000' },
-                { name: '200.000 IDR', price: 'Rp 205.000' }
             ],
             'codm': [
                 { name: '80 CP', price: 'Rp 10.000' },
@@ -2032,56 +1841,6 @@
                 { name: 'Token 1.000.000', price: 'Rp 1.000.000' }
             ],
             
-            // Voucher
-            'google_play': [
-                { name: '10.000', price: 'Rp 10.500' },
-                { name: '25.000', price: 'Rp 26.000' },
-                { name: '50.000', price: 'Rp 51.500' },
-                { name: '100.000', price: 'Rp 102.000' },
-                { name: '150.000', price: 'Rp 152.500' },
-                { name: '300.000', price: 'Rp 305.000' }
-            ],
-            'netflix': [
-                { name: 'Basic 1 Bulan', price: 'Rp 120.000' },
-                { name: 'Standard 1 Bulan', price: 'Rp 153.000' },
-                { name: 'Premium 1 Bulan', price: 'Rp 186.000' },
-                { name: 'Basic 3 Bulan', price: 'Rp 350.000' },
-                { name: 'Standard 3 Bulan', price: 'Rp 450.000' },
-                { name: 'Premium 3 Bulan', price: 'Rp 550.000' }
-            ],
-            'spotify': [
-                { name: 'Individual 1 Bulan', price: 'Rp 55.000' },
-                { name: 'Duo 1 Bulan', price: 'Rp 80.000' },
-                { name: 'Family 1 Bulan', price: 'Rp 85.000' },
-                { name: 'Individual 3 Bulan', price: 'Rp 150.000' },
-                { name: 'Duo 3 Bulan', price: 'Rp 230.000' },
-                { name: 'Family 3 Bulan', price: 'Rp 240.000' }
-            ],
-            'youtube': [
-                { name: 'Individual 1 Bulan', price: 'Rp 79.000' },
-                { name: 'Family 1 Bulan', price: 'Rp 149.000' },
-                { name: 'Student 1 Bulan', price: 'Rp 39.000' },
-                { name: 'Individual 3 Bulan', price: 'Rp 225.000' },
-                { name: 'Family 3 Bulan', price: 'Rp 420.000' },
-                { name: 'Student 3 Bulan', price: 'Rp 110.000' }
-            ],
-            'apple': [
-                { name: '10.000', price: 'Rp 10.800' },
-                { name: '25.000', price: 'Rp 26.500' },
-                { name: '50.000', price: 'Rp 52.000' },
-                { name: '100.000', price: 'Rp 103.000' },
-                { name: '150.000', price: 'Rp 154.000' },
-                { name: '300.000', price: 'Rp 308.000' }
-            ],
-            'other_games': [
-                { name: 'COD Mobile', price: 'Rp 5.000+' },
-                { name: 'Clash of Clans', price: 'Rp 10.000+' },
-                { name: 'Roblox', price: 'Rp 15.000+' },
-                { name: 'Arena of Valor', price: 'Rp 10.000+' },
-                { name: 'Lords Mobile', price: 'Rp 25.000+' },
-                { name: 'Ragnarok', price: 'Rp 20.000+' }
-            ],
-            
             // Paket Data
             'telkomsel_data': [
                 { name: '1GB/3 Hari', price: 'Rp 10.000' },
@@ -2130,48 +1889,6 @@
                 { name: '15GB/30 Hari', price: 'Rp 78.000' },
                 { name: '25GB/30 Hari', price: 'Rp 112.000' },
                 { name: '50GB/30 Hari', price: 'Rp 210.000' }
-            ],
-            
-            // Streaming
-            'disney': [
-                { name: 'Mobile 1 Bulan', price: 'Rp 45.000' },
-                { name: 'Premium 1 Bulan', price: 'Rp 65.000' },
-                { name: 'Mobile 3 Bulan', price: 'Rp 125.000' },
-                { name: 'Premium 3 Bulan', price: 'Rp 180.000' },
-                { name: 'Mobile 1 Tahun', price: 'Rp 450.000' },
-                { name: 'Premium 1 Tahun', price: 'Rp 650.000' }
-            ],
-            'viu': [
-                { name: '1 Bulan', price: 'Rp 39.000' },
-                { name: '3 Bulan', price: 'Rp 99.000' },
-                { name: '6 Bulan', price: 'Rp 189.000' },
-                { name: '1 Tahun', price: 'Rp 359.000' }
-            ],
-            'hbo': [
-                { name: '1 Bulan', price: 'Rp 99.000' },
-                { name: '3 Bulan', price: 'Rp 275.000' },
-                { name: '6 Bulan', price: 'Rp 520.000' },
-                { name: '1 Tahun', price: 'Rp 990.000' }
-            ],
-            'amazon': [
-                { name: '1 Bulan', price: 'Rp 59.000' },
-                { name: '3 Bulan', price: 'Rp 165.000' },
-                { name: '6 Bulan', price: 'Rp 315.000' },
-                { name: '1 Tahun', price: 'Rp 599.000' }
-            ],
-            'catchplay': [
-                { name: '1 Bulan', price: 'Rp 89.000' },
-                { name: '3 Bulan', price: 'Rp 249.000' },
-                { name: '6 Bulan', price: 'Rp 475.000' },
-                { name: '1 Tahun', price: 'Rp 899.000' }
-            ],
-            'other_streaming': [
-                { name: 'WeTV', price: 'Rp 35.000/bln' },
-                { name: 'Iflix', price: 'Rp 40.000/bln' },
-                { name: 'Mola TV', price: 'Rp 75.000/bln' },
-                { name: 'Vision+', price: 'Rp 50.000/bln' },
-                { name: 'U-Next', price: 'Rp 99.000/bln' },
-                { name: 'KlikFilm', price: 'Rp 30.000/bln' }
             ]
         };
         
@@ -2182,7 +1899,6 @@
             'pubg': 'PUBG',
             'valorant': 'VALORANT',
             'genshin': 'GENSHIN',
-            'steam': 'STEAM',
             'codm': 'CODM',
             'wildrift': 'WILDRIFT',
             'aov': 'AOV',
@@ -2208,24 +1924,12 @@
             'token_200k': 'TOKEN200',
             'token_500k': 'TOKEN500',
             'token_1m': 'TOKEN1000',
-            'google_play': 'GOOGLEPLAY',
-            'netflix': 'NETFLIX',
-            'spotify': 'SPOTIFY',
-            'youtube': 'YOUTUBE',
-            'apple': 'APPLE',
-            'other_games': 'VOUCHERGAME',
             'telkomsel_data': 'DATATS',
             'xl_data': 'DATAXL',
             'indosat_data': 'DATAINDOSAT',
             'three_data': 'DATATHREE',
             'smartfren_data': 'DATASMARTFREN',
-            'byu_data': 'DATABYU',
-            'disney': 'DISNEY',
-            'viu': 'VIU',
-            'hbo': 'HBO',
-            'amazon': 'AMAZON',
-            'catchplay': 'CATCHPLAY',
-            'other_streaming': 'STREAMING'
+            'byu_data': 'DATABYU'
         };
         
         // WhatsApp number (change this to your actual number)
@@ -2369,9 +2073,6 @@
                     
                     // Show price list modal
                     priceListModal.style.display = 'flex';
-                    
-                    // Prevent body scroll when modal is open
-                    document.body.style.overflow = 'hidden';
                 });
             });
             
@@ -2379,13 +2080,11 @@
             closeModalBtn.addEventListener('click', function() {
                 welcomeModal.style.display = 'none';
                 localStorage.setItem('cengirPediaVisited', 'true');
-                document.body.style.overflow = 'auto';
             });
             
             continueBtn.addEventListener('click', function() {
                 welcomeModal.style.display = 'none';
                 localStorage.setItem('cengirPediaVisited', 'true');
-                document.body.style.overflow = 'auto';
                 
                 // Vibrate on mobile if supported
                 if (navigator.vibrate) {
@@ -2395,7 +2094,6 @@
             
             closePriceListBtn.addEventListener('click', function() {
                 priceListModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
             });
             
             // Close modal when clicking outside
@@ -2403,11 +2101,9 @@
                 if (e.target === welcomeModal) {
                     welcomeModal.style.display = 'none';
                     localStorage.setItem('cengirPediaVisited', 'true');
-                    document.body.style.overflow = 'auto';
                 }
                 if (e.target === priceListModal) {
                     priceListModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
                 }
             });
             
@@ -2453,6 +2149,18 @@
                     this.style.transform = '';
                 });
             });
+            
+            // Android scroll fix
+            if (/Android/.test(navigator.userAgent)) {
+                // Force enable scrolling
+                document.body.style.overflowY = 'auto';
+                document.documentElement.style.overflowY = 'auto';
+                
+                // Add touch scroll improvement
+                document.addEventListener('touchmove', function(e) {
+                    // Allow default scroll behavior
+                }, { passive: true });
+            }
         });
         
         // Add swipe functionality for mobile
@@ -2501,45 +2209,6 @@
                 navLinks[currentIndex - 1].click();
             }
         }
-        
-        // Add mobile-specific optimizations
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            // Add iOS specific styles
-            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-                document.querySelectorAll('button, a, .product-card').forEach(el => {
-                    el.style.cursor = 'pointer';
-                });
-            }
-            
-            // Prevent zoom on input focus
-            document.addEventListener('touchmove', function(e) {
-                if (e.scale !== 1) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
-        }
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
