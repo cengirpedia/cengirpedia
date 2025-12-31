@@ -43,7 +43,7 @@
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 80px;
+            padding-top: 140px; /* Space for fixed header */
             -webkit-tap-highlight-color: transparent;
             position: relative;
             overflow-x: hidden;
@@ -51,6 +51,409 @@
             -webkit-overflow-scrolling: touch;
         }
         
+        /* ==================== HEADER TETAP DI ATAS ==================== */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .header-content {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 10px 15px;
+        }
+        
+        .site-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5px 0;
+        }
+        
+        .site-logo {
+            font-size: 28px;
+            color: var(--accent);
+            margin-right: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .site-name {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .site-tagline {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 3px;
+        }
+        
+        .nav-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 8px 0;
+            background-color: rgba(255, 255, 255, 0.15);
+            -webkit-overflow-scrolling: touch;
+            backdrop-filter: blur(5px);
+            margin-top: 5px;
+        }
+        
+        .nav-container::-webkit-scrollbar {
+            height: 3px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            margin: 0 4px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        /* ==================== POPUP WELCOME (CHECKBOX) ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 350px; /* Lebih kecil */
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+            position: relative;
+            z-index: 2001;
+            text-align: center;
+        }
+        
+        .modal-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .modal-subtitle {
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body {
+            max-height: 40vh;
+            overflow-y: auto;
+            padding-right: 5px;
+            font-size: 14px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .terms-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+        }
+        
+        .terms-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .terms-box ul {
+            padding-left: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .terms-box li {
+            margin-bottom: 8px;
+        }
+        
+        /* Checkbox untuk setuju */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .checkbox-container input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+        
+        .checkbox-container label {
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+        }
+        
+        .btn-continue {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            width: 100%;
+            margin-top: 10px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .btn-continue.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .btn-continue.active:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+        }
+        
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #e8f4fc;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+        
+        /* ==================== POPUP PRICE LIST (DIAMOND) ==================== */
+        .price-list-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            animation: fadeIn 0.3s ease;
+            padding: 20px;
+        }
+        
+        .price-list-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            padding: 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+            position: relative;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .price-list-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        /* TOMBOL X DI SUDUT KANAN ATAS */
+        .close-price-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            z-index: 1002;
+        }
+        
+        .close-price-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .price-list-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            padding-right: 40px; /* Space untuk tombol X */
+        }
+        
+        .price-list-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            padding-right: 40px; /* Space untuk tombol X */
+        }
+        
+        .price-list-body {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px;
+            max-height: 50vh;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.2s ease;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .price-item:hover {
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+        
+        .price-item.selected {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.2);
+        }
+        
+        .price-name {
+            font-weight: 500;
+            color: #555;
+            font-size: 15px;
+        }
+        
+        .price-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .price-list-footer {
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            flex-shrink: 0;
+            background: #f8f9fa;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .price-warning {
+            background: #fff8e1;
+            border-left: 4px solid var(--warning);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #e67e22;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-whatsapp {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* ==================== KONTEN UTAMA ==================== */
         .container {
             width: 100%;
             padding: 0 15px;
@@ -91,10 +494,6 @@
             background: radial-gradient(circle, rgba(255, 255, 220, 0.6) 0%, rgba(255, 255, 220, 0.2) 70%, rgba(255, 255, 220, 0) 100%);
         }
         
-        .particle:nth-child(5n) {
-            background: radial-gradient(circle, rgba(220, 240, 255, 0.7) 0%, rgba(220, 240, 255, 0.2) 70%, rgba(220, 240, 255, 0) 100%);
-        }
-        
         @keyframes float {
             0% {
                 transform: translateY(100vh) translateX(-10px) rotate(0deg);
@@ -110,225 +509,6 @@
                 transform: translateY(-100px) translateX(10px) rotate(180deg);
                 opacity: 0;
             }
-        }
-        
-        /* Popup Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 400px;
-            padding: 25px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-            position: relative;
-            z-index: 1001;
-        }
-        
-        .modal-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .modal-title {
-            font-size: 22px;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .modal-subtitle {
-            color: var(--primary);
-            font-size: 14px;
-        }
-        
-        .modal-body {
-            max-height: 50vh;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-        
-        .modal-section {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .modal-section:last-child {
-            border-bottom: none;
-        }
-        
-        .modal-section h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .modal-section p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 8px;
-        }
-        
-        .modal-section ul {
-            padding-left: 20px;
-        }
-        
-        .modal-section li {
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #555;
-        }
-        
-        .security-badge {
-            display: inline-flex;
-            align-items: center;
-            background: #e8f4fc;
-            color: var(--primary);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            z-index: 1002;
-        }
-        
-        .close-modal:hover {
-            background: var(--secondary);
-            transform: rotate(90deg);
-        }
-        
-        .modal-footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .btn-continue {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-            width: 100%;
-        }
-        
-        .btn-continue:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
-        }
-        
-        /* Header & Banner */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .banner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .logo {
-            color: white;
-            font-size: 28px;
-            font-weight: 900;
-            margin-right: 12px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .site-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .site-tagline {
-            font-size: 12px;
-            opacity: 0.9;
-            margin-top: 3px;
-        }
-        
-        /* Navigation */
-        .nav-container {
-            display: flex;
-            overflow-x: auto;
-            padding: 12px 0;
-            background-color: rgba(255, 255, 255, 0.15);
-            -webkit-overflow-scrolling: touch;
-            backdrop-filter: blur(5px);
-            position: sticky;
-            top: 80px;
-            z-index: 99;
-        }
-        
-        .nav-container::-webkit-scrollbar {
-            height: 4px;
-        }
-        
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            margin: 0 5px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            white-space: nowrap;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            background: var(--accent);
-            color: var(--dark);
-            transform: translateY(-2px);
         }
         
         /* Main Content */
@@ -364,7 +544,7 @@
         /* Product Grid - 2 COLUMNS LIKE IPHONE */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 30px;
             position: relative;
@@ -393,7 +573,7 @@
         }
         
         .product-img {
-            height: 120px; /* Increased height for better image display */
+            height: 120px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -406,10 +586,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        
-        .product-icon {
-            font-size: 40px;
         }
         
         .product-info {
@@ -441,139 +617,6 @@
             font-weight: 600;
             color: var(--primary);
             margin-top: auto;
-        }
-        
-        /* Price List Modal */
-        .price-list-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-            animation: fadeIn 0.3s ease;
-            padding: 20px;
-        }
-        
-        .price-list-content {
-            background: white;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 400px;
-            padding: 0;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-            position: relative;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .price-list-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            border-radius: 20px 20px 0 0;
-            text-align: center;
-            flex-shrink: 0;
-        }
-        
-        .price-list-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .price-list-subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .price-list-body {
-            flex: 1;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 20px;
-        }
-        
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            transition: all 0.2s ease;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            cursor: pointer;
-        }
-        
-        .price-item:hover {
-            background: #f0f7ff;
-        }
-        
-        .price-item.selected {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-left: 4px solid var(--primary);
-        }
-        
-        .price-name {
-            font-weight: 500;
-            color: #555;
-        }
-        
-        .price-value {
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .price-list-footer {
-            padding: 15px 20px;
-            text-align: center;
-            border-top: 1px solid #eee;
-            flex-shrink: 0;
-        }
-        
-        .price-warning {
-            background: #fff8e1;
-            border-left: 4px solid var(--warning);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 12px;
-            color: #e67e22;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .price-warning i {
-            font-size: 14px;
-        }
-        
-        .btn-whatsapp {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-        
-        .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
         }
         
         /* Guide Section */
@@ -622,21 +665,6 @@
             font-weight: 800;
             margin-right: 15px;
             flex-shrink: 0;
-        }
-        
-        .step-text {
-            flex: 1;
-        }
-        
-        .step-text h4 {
-            color: var(--dark);
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        
-        .step-text p {
-            font-size: 13px;
-            color: #555;
         }
         
         /* WhatsApp Float */
@@ -758,24 +786,6 @@
             transform: translateY(-5px);
         }
         
-        /* Custom Scrollbar */
-        .modal-body::-webkit-scrollbar,
-        .price-list-body::-webkit-scrollbar {
-            width: 5px;
-        }
-        
-        .modal-body::-webkit-scrollbar-track,
-        .price-list-body::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        .modal-body::-webkit-scrollbar-thumb,
-        .price-list-body::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-        
         /* Responsive Design */
         @media (max-width: 380px) {
             .products-grid {
@@ -784,20 +794,33 @@
             }
             
             .nav-link {
-                padding: 8px 14px;
-                font-size: 13px;
+                padding: 6px 12px;
+                font-size: 12px;
             }
             
             .product-img {
                 height: 100px;
             }
+            
+            .modal-content {
+                max-width: 300px;
+                padding: 15px;
+            }
+            
+            .modal-title {
+                font-size: 18px;
+            }
+            
+            .price-list-content {
+                max-width: 350px;
+            }
+            
+            .price-list-title {
+                font-size: 18px;
+            }
         }
         
         @media (min-width: 500px) {
-            body {
-                background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
-            }
-            
             .container {
                 box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
                 min-height: 100vh;
@@ -850,7 +873,6 @@
                 -webkit-overflow-scrolling: touch !important;
             }
             
-            /* Ensure 2 cards layout on Android */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
             }
@@ -874,6 +896,14 @@
             .product-price {
                 font-size: 13px;
             }
+            
+            .site-name {
+                font-size: 18px;
+            }
+            
+            .price-list-content {
+                max-width: 300px;
+            }
         }
         
         /* Fix for landscape orientation */
@@ -886,112 +916,109 @@
             .product-img {
                 height: 80px;
             }
+            
+            .price-list-body {
+                max-height: 40vh;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ==================== HEADER TETAP ==================== -->
+    <header class="fixed-header">
+        <div class="header-content">
+            <div class="site-brand">
+                <div class="site-logo">🎮</div>
+                <div>
+                    <div class="site-name">CENGIR PEDIA</div>
+                    <div class="site-tagline">Top Up & Layanan Digital Terlengkap</div>
+                </div>
+            </div>
+            
+            <div class="nav-container">
+                <a href="#games" class="nav-link active" data-section="games">🎮 Game</a>
+                <a href="#ewallet" class="nav-link" data-section="ewallet">💳 E-Wallet</a>
+                <a href="#pulsa" class="nav-link" data-section="pulsa">📱 Pulsa</a>
+                <a href="#data" class="nav-link" data-section="data">📶 Paket Data</a>
+                <a href="#token" class="nav-link" data-section="token">⚡ Token Listrik</a>
+                <a href="#guide" class="nav-link" data-section="guide">📚 Panduan</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ==================== POPUP WELCOME ==================== -->
+    <div class="modal-overlay" id="welcomeModal">
+        <div class="modal-content">
+            <div class="modal-icon">🎮</div>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">Selamat Datang di Cengir Pedia!</h2>
+                <p class="modal-subtitle">Top Up & Layanan Digital Terpercaya</p>
+            </div>
+            
+            <div class="modal-body">
+                <p>Platform top up dan layanan digital terlengkap dengan proses cepat, aman, dan harga terjangkau.</p>
+                
+                <div class="terms-box">
+                    <h4>📋 Syarat & Ketentuan</h4>
+                    <ul>
+                        <li>Data pribadi Anda aman dan terlindungi</li>
+                        <li>Transaksi menggunakan sistem keamanan terenkripsi</li>
+                        <li>Pembayaran melalui QRIS yang aman</li>
+                        <li>Proses pengiriman 1-5 menit setelah konfirmasi</li>
+                        <li>Garansi pengembalian jika produk tidak terkirim</li>
+                    </ul>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" id="agreeTerms">
+                    <label for="agreeTerms">Saya setuju dengan syarat dan ketentuan yang berlaku</label>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-continue" id="continueBtn">Setuju & Lanjutkan</button>
+                
+                <div class="security-badges">
+                    <span class="security-badge"><i class="fas fa-shield-alt"></i> Transaksi Aman</span>
+                    <span class="security-badge"><i class="fas fa-bolt"></i> Proses Cepat</span>
+                    <span class="security-badge"><i class="fas fa-headset"></i> 24 Jam</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== POPUP PRICE LIST ==================== -->
+    <div class="price-list-modal" id="priceListModal">
+        <div class="price-list-content">
+            <div class="price-list-header">
+                <!-- TOMBOL X DI SUDUT KANAN ATAS -->
+                <button class="close-price-modal" id="closePriceList">&times;</button>
+                <h3 class="price-list-title" id="priceListTitle">Mobile Legends</h3>
+                <p class="price-list-subtitle" id="priceListSubtitle">Pilih nominal diamond</p>
+            </div>
+            
+            <div class="price-list-body" id="priceListBody">
+                <!-- Price items akan dimasukkan secara dinamis di sini -->
+            </div>
+            
+            <div class="price-list-footer">
+                <div class="price-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    HARGA BISA BERUBAH KAPAN SAJA, LIAT UPDATE HARGA DI WHATSAPP
+                </div>
+                <a href="#" class="btn-whatsapp" id="whatsappLink" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Beli via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+    
     <!-- Soft Light Particles Background Animation -->
     <div class="particles-bg" id="particlesBg"></div>
     
-    <!-- Mobile Container -->
+    <!-- Main Container -->
     <div class="container">
-        <!-- Popup Modal -->
-        <div class="modal-overlay" id="welcomeModal">
-            <div class="modal-content">
-                <button class="close-modal" id="closeModal">&times;</button>
-                
-                <div class="modal-header">
-                    <h2 class="modal-title">Selamat Datang di Cengir Pedia!</h2>
-                    <p class="modal-subtitle">Top Up & Layanan Digital Terpercaya</p>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="modal-section">
-                        <h3>Tentang Kami</h3>
-                        <p>Cengir Pedia adalah platform top up dan layanan digital terlengkap dengan proses cepat, aman, dan harga terjangkau. Kami telah melayani ribuan pelanggan dengan komitmen memberikan pelayanan terbaik.</p>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h3>Keamanan Transaksi</h3>
-                        <p>Kami memprioritaskan keamanan transaksi Anda:</p>
-                        <ul>
-                            <li>✅ Transaksi dilindungi sistem keamanan terenkripsi</li>
-                            <li>✅ Data pribadi Anda aman dan tidak dibagikan</li>
-                            <li>✅ Pembayaran melalui rekening resmi perusahaan</li>
-                            <li>✅ Konfirmasi produk sebelum pembayaran</li>
-                            <li>✅ Garansi pengembalian jika produk tidak terkirim</li>
-                        </ul>
-                        
-                        <div style="margin-top: 15px;">
-                            <span class="security-badge"><i class="fas fa-shield-alt"></i> Transaksi Aman</span>
-                            <span class="security-badge"><i class="fas fa-lock"></i> Data Terlindungi</span>
-                            <span class="security-badge"><i class="fas fa-bolt"></i> Proses Cepat</span>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h3>Cara Kerja</h3>
-                        <p>1. Pilih produk yang diinginkan</p>
-                        <p>2. Klik gambar untuk melihat daftar harga</p>
-                        <p>3. Pilih nominal yang sesuai</p>
-                        <p>4. Langsung terhubung ke WhatsApp dengan pesan "GET [PRODUK]"</p>
-                        <p>5. Admin akan membantu proses selanjutnya</p>
-                    </div>
-                </div>
-                
-                <div class="modal-footer">
-                    <button class="btn-continue" id="continueBtn">Mulai Belanja Sekarang!</button>
-                    <p style="margin-top: 15px; font-size: 12px; color: #777;">Dengan melanjutkan, Anda menyetujui syarat dan ketentuan kami</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Price List Modal -->
-        <div class="price-list-modal" id="priceListModal">
-            <div class="price-list-content">
-                <div class="price-list-header">
-                    <button class="close-modal" id="closePriceList" style="position: absolute; top: 15px; right: 15px;">&times;</button>
-                    <h3 class="price-list-title" id="priceListTitle">Mobile Legends</h3>
-                    <p class="price-list-subtitle" id="priceListSubtitle">Pilih nominal diamond</p>
-                </div>
-                
-                <div class="price-list-body" id="priceListBody">
-                    <!-- Price items will be dynamically added here -->
-                </div>
-                
-                <div class="price-list-footer">
-                    <div class="price-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        HARGA BISA BERUBAH KAPAN SAJA, LIAT UPDATE HARGA DI WHATSAPP
-                    </div>
-                    <a href="#" class="btn-whatsapp" id="whatsappLink" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Beli via WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Header & Banner -->
-        <header>
-            <div class="banner">
-                <div class="logo">🎮</div>
-                <div>
-                    <h1 class="site-title">CENGIR PEDIA</h1>
-                    <p class="site-tagline">Top Up & Layanan Digital Terlengkap</p>
-                </div>
-            </div>
-        </header>
-        
-        <!-- Navigation -->
-        <div class="nav-container">
-            <a href="#games" class="nav-link active" data-section="games">🎮 Game</a>
-            <a href="#ewallet" class="nav-link" data-section="ewallet">💳 E-Wallet</a>
-            <a href="#pulsa" class="nav-link" data-section="pulsa">📱 Pulsa</a>
-            <a href="#data" class="nav-link" data-section="data">📶 Paket Data</a>
-            <a href="#token" class="nav-link" data-section="token">⚡ Token Listrik</a>
-            <a href="#guide" class="nav-link" data-section="guide">📚 Panduan</a>
-        </div>
-        
         <!-- Main Content -->
         <main>
             <!-- Game Top Up Section -->
@@ -1573,7 +1600,6 @@
         
         // Product data with prices
         const productData = {
-            // Game products
             'ml': [
                 { name: '5 Diamond', price: 'Rp 1.500' },
                 { name: '12 Diamond', price: 'Rp 3.000' },
@@ -1676,8 +1702,6 @@
                 { name: '3500 Minecoin', price: 'Rp 200.000' },
                 { name: '7200 Minecoin', price: 'Rp 400.000' }
             ],
-            
-            // E-Wallet products
             'dana': [
                 { name: '10.000', price: 'Rp 10.500' },
                 { name: '20.000', price: 'Rp 20.800' },
@@ -1726,8 +1750,6 @@
                 { name: '200.000', price: 'Rp 200.000' },
                 { name: '500.000', price: 'Rp 500.000' }
             ],
-            
-            // Pulsa products
             'telkomsel': [
                 { name: '5.000', price: 'Rp 6.000' },
                 { name: '10.000', price: 'Rp 11.500' },
@@ -1776,8 +1798,6 @@
                 { name: '100.000', price: 'Rp 100.200' },
                 { name: '200.000', price: 'Rp 200.200' }
             ],
-            
-            // Token Listrik
             'token_20k': [
                 { name: 'Token 20.000', price: 'Rp 20.000' }
             ],
@@ -1796,8 +1816,6 @@
             'token_1m': [
                 { name: 'Token 1.000.000', price: 'Rp 1.000.000' }
             ],
-            
-            // Paket Data
             'telkomsel_data': [
                 { name: '1GB/3 Hari', price: 'Rp 10.000' },
                 { name: '3GB/7 Hari', price: 'Rp 25.000' },
@@ -1850,51 +1868,28 @@
         
         // WhatsApp product codes
         const productCodes = {
-            'ml': 'ML',
-            'ff': 'FF',
-            'pubg': 'PUBG',
-            'valorant': 'VALORANT',
-            'genshin': 'GENSHIN',
-            'codm': 'CODM',
-            'wildrift': 'WILDRIFT',
-            'aov': 'AOV',
-            'roblox': 'ROBLOX',
-            'coc': 'COC',
-            'cr': 'CR',
-            'minecraft': 'MINECRAFT',
-            'dana': 'DANA',
-            'ovo': 'OVO',
-            'gopay': 'GOPAY',
-            'shopeepay': 'SHOPEEPAY',
-            'linkaja': 'LINKAJA',
-            'jenius': 'JENIUS',
-            'telkomsel': 'TELKOMSEL',
-            'xl': 'XL',
-            'indosat': 'INDOSAT',
-            'three': 'THREE',
-            'smartfren': 'SMARTFREN',
-            'byu': 'BYU',
-            'token_20k': 'TOKEN20',
-            'token_50k': 'TOKEN50',
-            'token_100k': 'TOKEN100',
-            'token_200k': 'TOKEN200',
-            'token_500k': 'TOKEN500',
-            'token_1m': 'TOKEN1000',
-            'telkomsel_data': 'DATATS',
-            'xl_data': 'DATAXL',
-            'indosat_data': 'DATAINDOSAT',
-            'three_data': 'DATATHREE',
-            'smartfren_data': 'DATASMARTFREN',
-            'byu_data': 'DATABYU'
+            'ml': 'ML', 'ff': 'FF', 'pubg': 'PUBG', 'valorant': 'VALORANT',
+            'genshin': 'GENSHIN', 'codm': 'CODM', 'wildrift': 'WILDRIFT',
+            'aov': 'AOV', 'roblox': 'ROBLOX', 'coc': 'COC', 'cr': 'CR',
+            'minecraft': 'MINECRAFT', 'dana': 'DANA', 'ovo': 'OVO',
+            'gopay': 'GOPAY', 'shopeepay': 'SHOPEEPAY', 'linkaja': 'LINKAJA',
+            'jenius': 'JENIUS', 'telkomsel': 'TELKOMSEL', 'xl': 'XL',
+            'indosat': 'INDOSAT', 'three': 'THREE', 'smartfren': 'SMARTFREN',
+            'byu': 'BYU', 'token_20k': 'TOKEN20', 'token_50k': 'TOKEN50',
+            'token_100k': 'TOKEN100', 'token_200k': 'TOKEN200',
+            'token_500k': 'TOKEN500', 'token_1m': 'TOKEN1000',
+            'telkomsel_data': 'DATATS', 'xl_data': 'DATAXL',
+            'indosat_data': 'DATAINDOSAT', 'three_data': 'DATATHREE',
+            'smartfren_data': 'DATASMARTFREN', 'byu_data': 'DATABYU'
         };
         
-        // WhatsApp number (change this to your actual number)
+        // WhatsApp number
         const whatsappNumber = '85561610474';
         
         // DOM elements
         const welcomeModal = document.getElementById('welcomeModal');
-        const closeModalBtn = document.getElementById('closeModal');
         const continueBtn = document.getElementById('continueBtn');
+        const agreeCheckbox = document.getElementById('agreeTerms');
         const priceListModal = document.getElementById('priceListModal');
         const priceListTitle = document.getElementById('priceListTitle');
         const priceListSubtitle = document.getElementById('priceListSubtitle');
@@ -1906,63 +1901,33 @@
             // Create soft light particles background
             createParticlesBackground();
             
-            // Detect if on mobile
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            // Show welcome modal on first visit (only on mobile)
-            if (isMobile) {
-                const hasVisited = localStorage.getItem('cengirPediaVisited');
-                if (!hasVisited) {
-                    setTimeout(() => {
-                        welcomeModal.style.display = 'flex';
-                    }, 500);
-                }
-            } else {
-                // If not mobile, still show modal but with mobile warning
-                const hasVisited = localStorage.getItem('cengirPediaVisited');
-                if (!hasVisited) {
-                    setTimeout(() => {
-                        welcomeModal.style.display = 'flex';
-                        // Add mobile warning to modal
-                        const modalBody = document.querySelector('.modal-body');
-                        const warningDiv = document.createElement('div');
-                        warningDiv.className = 'modal-section';
-                        warningDiv.innerHTML = `
-                            <h3 style="color: #e74c3c;">📱 Mobile Recommended</h3>
-                            <p>Website ini dirancang khusus untuk tampilan mobile. Untuk pengalaman terbaik, buka di smartphone Anda.</p>
-                        `;
-                        modalBody.insertBefore(warningDiv, modalBody.firstChild);
-                    }, 500);
-                }
+            // Show welcome modal on first visit
+            const hasVisited = localStorage.getItem('cengirPediaVisited');
+            if (!hasVisited) {
+                setTimeout(() => {
+                    welcomeModal.style.display = 'flex';
+                }, 500);
             }
             
             // Navigation functionality
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.content-section');
             
-            // Navigation click handler
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Remove active class from all nav links
                     navLinks.forEach(item => item.classList.remove('active'));
-                    
-                    // Add active class to clicked nav link
                     this.classList.add('active');
                     
-                    // Get target section
                     const targetSection = this.getAttribute('data-section');
                     
-                    // Hide all sections
                     sections.forEach(section => {
                         section.classList.remove('active');
                     });
                     
-                    // Show target section
                     document.getElementById(targetSection).classList.add('active');
                     
-                    // Scroll to top of section
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
@@ -2032,22 +1997,28 @@
                 });
             });
             
-            // Close modal buttons
-            closeModalBtn.addEventListener('click', function() {
-                welcomeModal.style.display = 'none';
-                localStorage.setItem('cengirPediaVisited', 'true');
+            // Checkbox handler untuk mengaktifkan tombol
+            agreeCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    continueBtn.classList.add('active');
+                } else {
+                    continueBtn.classList.remove('active');
+                }
             });
             
+            // Tombol continue handler
             continueBtn.addEventListener('click', function() {
+                if (!this.classList.contains('active')) return;
+                
                 welcomeModal.style.display = 'none';
                 localStorage.setItem('cengirPediaVisited', 'true');
                 
-                // Vibrate on mobile if supported
                 if (navigator.vibrate) {
                     navigator.vibrate(100);
                 }
             });
             
+            // Close price list modal dengan tombol X
             closePriceListBtn.addEventListener('click', function() {
                 priceListModal.style.display = 'none';
             });
@@ -2081,13 +2052,12 @@
                     behavior: 'smooth'
                 });
                 
-                // Vibrate on mobile if supported
                 if (navigator.vibrate) {
                     navigator.vibrate(50);
                 }
             });
             
-            // Update all WhatsApp links with actual number
+            // Update WhatsApp links
             const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
             whatsappLinks.forEach(link => {
                 const currentHref = link.getAttribute('href');
@@ -2095,29 +2065,11 @@
                 link.setAttribute('href', newHref);
             });
             
-            // Add touch feedback to cards
-            productCards.forEach(card => {
-                card.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(0.98)';
-                });
-                
-                card.addEventListener('touchend', function() {
-                    this.style.transform = '';
-                });
-            });
-            
             // Android scroll fix
             if (/Android/.test(navigator.userAgent)) {
-                // Force enable scrolling
                 document.body.style.overflowY = 'auto';
                 document.documentElement.style.overflowY = 'auto';
                 
-                // Add touch scroll improvement
-                document.addEventListener('touchmove', function(e) {
-                    // Allow default scroll behavior
-                }, { passive: true });
-                
-                // Force 2-column layout on Android
                 const productsGrids = document.querySelectorAll('.products-grid');
                 productsGrids.forEach(grid => {
                     grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
@@ -2142,12 +2094,10 @@
             const swipeThreshold = 50;
             
             if (touchEndX < touchStartX - swipeThreshold) {
-                // Swipe left - go to next section
                 navigateToNextSection();
             }
             
             if (touchEndX > touchStartX + swipeThreshold) {
-                // Swipe right - go to previous section
                 navigateToPrevSection();
             }
         }
@@ -2174,19 +2124,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
